@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 /**
  * 
- * @author wtao
+ * @author lshring
  *
  */
 public class App {
@@ -27,20 +27,35 @@ public class App {
 			Document doc = Jsoup.connect(url).get();
 
 			Elements es = doc.select(".grid_view .item");
-			System.out.println(es.size());
 
+			System.out.println(es.size());
+			
+/*			for (Element e : es) {
+			System.out.println(e.attr("src"));
+			}*/
 			// 创建一个影片的列表
 			ArrayList<Film> list = new ArrayList<>();
 
 			for (Element e : es) {
 				Film f = new Film();
 				// 每一部影片
-				Element t = e.select(".title").first();
+				Elements id = e.select(".pic em");
+				Element title = e.select(".title").first() ;
+				Elements poster = e.select("img");
+				String info = e.select(".bd p").first().text();
+				Elements rating = e.select(".rating_num");
 				String num = e.select(".star span").last().text();
-				System.out.println(t.text() + ", " + num);
+				String quote = e.select(".inq").text();
+				
+				System.out.println(id.text()+ ", " + title.text()+ ", " + poster.attr("src") + ", "+rating.text()  +", " + info + ", " + num+ ", " +quote);
 
 //				f.id
 //				f.title
+//				f.poster
+//				f.info
+//				f.rating
+//				f.num
+//				f.quote
 				list.add(f);
 			}
 

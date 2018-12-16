@@ -3,7 +3,7 @@ package edu.csuft.lshring.mspider;
 /**
  * ӰƬ
  * 
- * @author wtao
+ * @author lshring
  *
  */
 public class Film {
